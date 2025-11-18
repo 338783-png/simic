@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Siamo - SICMI Sarl</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Timeline Styles */
+        .timeline-section {
+            position: relative;
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+        }
+        
+        .timeline-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.3) 100%);
+            box-shadow: 0 0 20px rgba(255,255,255,0.5);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 0.8s forwards;
+        }
+        
+        .timeline-item:nth-child(1) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.6s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.8s; }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .timeline-item.left .timeline-content {
+            margin-left: 0;
+            margin-right: calc(50% + 40px);
+            text-align: right;
+        }
+        
+        .timeline-item.right .timeline-content {
+            margin-left: calc(50% + 40px);
+            margin-right: 0;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 24px;
+            background: white;
+            border: 4px solid #667eea;
+            border-radius: 50%;
+            z-index: 2;
+            box-shadow: 0 0 0 4px rgba(255,255,255,0.3), 0 0 20px rgba(102,126,234,0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 4px rgba(255,255,255,0.3), 0 0 20px rgba(102,126,234,0.5);
+            }
+            50% {
+                box-shadow: 0 0 0 8px rgba(255,255,255,0.2), 0 0 30px rgba(102,126,234,0.8);
+            }
+        }
+        
+        .timeline-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+        }
+        
+        .timeline-year {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(102,126,234,0.4);
+        }
+        
+        .timeline-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-description {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .timeline-icon {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 20px rgba(102,126,234,0.4);
+            z-index: 3;
+        }
+        
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item.left .timeline-content,
+            .timeline-item.right .timeline-content {
+                margin-left: 70px;
+                margin-right: 0;
+                text-align: left;
+            }
+            
+            .timeline-dot,
+            .timeline-icon {
+                left: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <img src="images/logo.png" alt="SICMI Logo" height="40" class="me-2">SICMI Sarl
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fas fa-home me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">
+                            <i class="fas fa-info-circle me-1"></i>Chi Siamo
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">
+                            <i class="fas fa-cogs me-1"></i>Servizi
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="projects.html">
+                            <i class="fas fa-briefcase me-1"></i>Progetti
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">
+                            <i class="fas fa-envelope me-1"></i>Contatti
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="bg-primary text-white py-5">
+        <div class="container">
+            <h1 class="display-4">Chi Siamo</h1>
+            <p class="lead">La nostra storia, missione e valori</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-6">
+                    <h2 class="mb-4">La Nostra Storia</h2>
+                    <p class="lead">SICMI Sarl - Société d'Ingénierie de Construction et de Maintenance Industrielle</p>
+                    <p><strong>RCCM:</strong> RC/DLA/2020/B/2383 | <strong>NIU:</strong> M042014422700Q</p>
+                    <p>Specializzata nella costruzione e manutenzione industriale, SICMI Sarl è stata creata nel <strong>2020</strong> da un gruppo di tecnici e ingegneri esperti nei mestieri della costruzione e manutenzione industriale. Dopo aver realizzato numerosi progetti, l'azienda ambisce a posizionarsi tra i leader del suo settore in Camerun entro il 2030.</p>
+                    <p>La nostra missione principale è la <strong>soddisfazione dei clienti</strong> sugli aspetti legati alla qualità, al rispetto delle scadenze e ai costi delle prestazioni. Per consolidare i nostri risultati e creare un ambiente favorevole all'efficienza dei team e all'innovazione, SICMI Sarl basa il suo sviluppo su tre pilastri principali: <strong>semplicità, eccellenza operazionale e innovazione</strong>.</p>
+                    <p>SICMI Sarl è attualmente impegnata in un processo di <strong>certificazione ISO 9001 v2015 e ISO 45001 v2018</strong> per garantire la massima qualità e sicurezza.</p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="images/Screenshot 2025-11-11 162408.png" alt="SICMI Team" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+        <div class="container">
+            <div class="text-center text-white mb-5">
+                <h2 class="display-4 fw-bold mb-3">Il Nostro Percorso</h2>
+                <p class="lead">5 anni di crescita, innovazione e successi</p>
+            </div>
+
+            <div class="timeline">
+                <!-- 2020 -->
+                <div class="timeline-item left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-icon" style="top: 0;">
+                        <i class="fas fa-flag-checkered"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2020</span>
+                        <h3 class="timeline-title">Fondazione SICMI Sarl</h3>
+                        <p class="timeline-description">
+                            Creazione di SICMI Sarl da parte di un gruppo di tecnici e ingegneri esperti. Registrazione ufficiale RCCM: RC/DLA/2020/B/2383. Inizio attività con focus su costruzione e manutenzione industriale a Bonaberi, Douala.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2021-2022 -->
+                <div class="timeline-item right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-icon" style="top: 0;">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2021-2022</span>
+                        <h3 class="timeline-title">Crescita e Qualificazioni</h3>
+                        <p class="timeline-description">
+                            Qualificazione saldatori ai processi 141, 111, 135 (TIG, MIG, MAG, saldatura ad arco). Ampliamento del team con ingegneri, tecnici specializzati e saldatori omologati. Primi contratti importanti nel settore petrolifero e industriale.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2023-2024 -->
+                <div class="timeline-item left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-icon" style="top: 0;">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2023-2024</span>
+                        <h3 class="timeline-title">Progetti Strategici</h3>
+                        <p class="timeline-description">
+                            Realizzazione di grandi progetti per SONARA-LIMBE (strutture metalliche, carpenterie, tuyauterie industriale) e ADDAX PETROLEUM (saldature speciali, installazione equipaggiamenti). Consolidamento della reputazione nel settore industriale camerunense.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2025 -->
+                <div class="timeline-item right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-icon" style="top: 0;">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2025</span>
+                        <h3 class="timeline-title">Certificazione e Futuro</h3>
+                        <p class="timeline-description">
+                            150+ progetti completati, 50+ clienti soddisfatti. Avvio processo di certificazione ISO 9001 v2015 e ISO 45001 v2018. Obiettivo: posizionamento tra i leader del settore in Camerun entro il 2030. Implementazione ERP Odoo per reporting digitale avanzato.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+            <!-- Mission & Vision -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 border-primary">
+                        <div class="card-body">
+                            <h3 class="card-title text-primary"><i class="fas fa-bullseye me-2"></i>La Nostra Missione</h3>
+                            <p class="card-text">La soddisfazione dei nostri clienti sugli aspetti legati alla <strong>qualità, al rispetto delle scadenze e ai costi</strong> delle prestazioni. Implementiamo le nostre attività nel rigoroso rispetto delle esigenze normative e regolamentari per garantire la sicurezza dei team e la soddisfazione dei clienti.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 border-primary">
+                        <div class="card-body">
+                            <h3 class="card-title text-primary"><i class="fas fa-eye me-2"></i>La Nostra Visione</h3>
+                            <p class="card-text">Posizionarsi tra i <strong>leader del settore in Camerun entro il 2030</strong>. Essere riconosciuti come partner affidabile, tecnicamente competente e impegnato al fianco dei clienti per garantire il successo dei progetti e la performance duratura degli equipaggiamenti di produzione.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Values -->
+            <h2 class="text-center mb-5">I Nostri Valori</h2>
+            <div class="row g-4 mb-5">
+                <div class="col-md-2 col-sm-6">
+                    <div class="text-center p-4 bg-light rounded">
+                        <i class="fas fa-medal fa-3x text-primary mb-3"></i>
+                        <h5>Excellence Opérationnelle</h5>
+                        <p>Prestazioni superiori in ogni intervento</p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-6">
+                    <div class="text-center p-4 bg-light rounded">
+                        <i class="fas fa-lightbulb fa-3x text-primary mb-3"></i>
+                        <h5>Innovation</h5>
+                        <p>Soluzioni creative e tecnologie avanzate</p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-6">
+                    <div class="text-center p-4 bg-light rounded">
+                        <i class="fas fa-star fa-3x text-primary mb-3"></i>
+                        <h5>Qualité</h5>
+                        <p>Standard eccellenti certificati ISO</p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-6">
+                    <div class="text-center p-4 bg-light rounded">
+                        <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
+                        <h5>Sécurité</h5>
+                        <p>Sicurezza prioritaria secondo ISO 45001</p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-6">
+                    <div class="text-center p-4 bg-light rounded">
+                        <i class="fas fa-clock fa-3x text-primary mb-3"></i>
+                        <h5>Respect des Délais</h5>
+                        <p>Rispetto rigoroso delle tempistiche</p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-6">
+                    <div class="text-center p-4 bg-light rounded">
+                        <i class="fas fa-handshake fa-3x text-primary mb-3"></i>
+                        <h5>Fiabilité</h5>
+                        <p>Partner affidabile e competente</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Valore Aggiunto SICMI -->
+            <h2 class="text-center mb-5 mt-5">Perché Scegliere SICMI Sarl</h2>
+            <div class="row g-4 mb-5">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="text-primary mb-3"><i class="fas fa-layer-group fa-2x"></i></div>
+                            <h5 class="card-title">Multidisciplinarità</h5>
+                            <p class="card-text">Un solo interlocutore per tutti i vostri bisogni: costruzione, manutenzione, saldatura, tuyauterie, trattamento superfici.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="text-primary mb-3"><i class="fas fa-bolt fa-2x"></i></div>
+                            <h5 class="card-title">Reattività</h5>
+                            <p class="card-text">Intervento in meno di 5 ore secondo i contratti. Servizio di emergenza disponibile 24/7.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="text-primary mb-3"><i class="fas fa-chart-line fa-2x"></i></div>
+                            <h5 class="card-title">Suivi Digital</h5>
+                            <p class="card-text">Reporting tecnico automatizzato via ERP Odoo. Tracciabilità completa dei progetti in tempo reale.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="text-primary mb-3"><i class="fas fa-drafting-compass fa-2x"></i></div>
+                            <h5 class="card-title">Bureau d'Étude Intégré</h5>
+                            <p class="card-text">Concezione su misura con software avanzati: AutoCAD, SolidWorks, Robot Millennium. Design adattato all'esistente.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="text-primary mb-3"><i class="fas fa-users-cog fa-2x"></i></div>
+                            <h5 class="card-title">Équipe Expérimentée</h5>
+                            <p class="card-text">Ingegneri specializzati, tecnici qualificati, saldatori omologati. Expertise métier e rispetto delle scadenze garantiti.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="text-primary mb-3"><i class="fas fa-leaf fa-2x"></i></div>
+                            <h5 class="card-title">Engagement RSE</h5>
+                            <p class="card-text">Cantiere pulito, sicurezza prioritaria, tracciabilità ambientale. Certificazione ISO 9001 e ISO 45001 in corso.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Metodologia -->
+            <h2 class="text-center mb-5 mt-5">La Nostra Metodologia di Lavoro</h2>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="row g-4 mb-5">
+                        <div class="col-md-4">
+                            <div class="card border-primary h-100">
+                                <div class="card-body text-center">
+                                    <div class="badge bg-primary rounded-circle p-3 mb-3">
+                                        <h4 class="mb-0 text-white">1</h4>
+                                    </div>
+                                    <h5>Visita del Sito</h5>
+                                    <p class="small">Rilievo delle quote e analisi dei vincoli operativi</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card border-primary h-100">
+                                <div class="card-body text-center">
+                                    <div class="badge bg-primary rounded-circle p-3 mb-3">
+                                        <h4 class="mb-0 text-white">2</h4>
+                                    </div>
+                                    <h5>Analisi dei Bisogni</h5>
+                                    <p class="small">Studio approfondito delle esigenze del cliente</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card border-primary h-100">
+                                <div class="card-body text-center">
+                                    <div class="badge bg-primary rounded-circle p-3 mb-3">
+                                        <h4 class="mb-0 text-white">3</h4>
+                                    </div>
+                                    <h5>Proposta Tecnica</h5>
+                                    <p class="small">Offerta dettagliata tecnica e finanziaria</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card border-primary h-100">
+                                <div class="card-body text-center">
+                                    <div class="badge bg-primary rounded-circle p-3 mb-3">
+                                        <h4 class="mb-0 text-white">4</h4>
+                                    </div>
+                                    <h5>Pianificazione</h5>
+                                    <p class="small">Coordinamento delle équipe e risorse</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card border-primary h-100">
+                                <div class="card-body text-center">
+                                    <div class="badge bg-primary rounded-circle p-3 mb-3">
+                                        <h4 class="mb-0 text-white">5</h4>
+                                    </div>
+                                    <h5>Realizzazione</h5>
+                                    <p class="small">Lavori nel rispetto delle norme e codici applicabili</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card border-primary h-100">
+                                <div class="card-body text-center">
+                                    <div class="badge bg-primary rounded-circle p-3 mb-3">
+                                        <h4 class="mb-0 text-white">6</h4>
+                                    </div>
+                                    <h5>Controllo Qualità</h5>
+                                    <p class="small">QA/QC a tutte le fasi di realizzazione</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mx-auto">
+                            <div class="card border-primary h-100">
+                                <div class="card-body text-center">
+                                    <div class="badge bg-primary rounded-circle p-3 mb-3">
+                                        <h4 class="mb-0 text-white">7</h4>
+                                    </div>
+                                    <h5>Collaudo e Follow-up</h5>
+                                    <p class="small">Ricezione lavori, follow-up post-intervento e reporting</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5><img src="images/logo.png" alt="SICMI Logo" height="30" class="me-2">SICMI Sarl</h5>
+                    <p>Società d'Ingegneria di Costruzione e Manutenzione Industriale</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Contatti</h5>
+                    <p><i class="fas fa-phone me-2"></i>+237 675948524 / 687013563</p>
+                    <p><i class="fas fa-envelope me-2"></i>sicmisarl@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>Bonaberi, Douala, Camerun</p>
+                    <p class="small"><strong>RCCM:</strong> RC/DLA/2020/B/2383</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Link Rapidi</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html" class="text-white text-decoration-none">Chi Siamo</a></li>
+                        <li><a href="services.html" class="text-white text-decoration-none">Servizi</a></li>
+                        <li><a href="projects.html" class="text-white text-decoration-none">Progetti</a></li>
+                        <li><a href="contact.html" class="text-white text-decoration-none">Contatti</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="bg-white">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 SICMI Sarl. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

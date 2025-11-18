@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manutenzione Industriale - SICMI Sarl</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <img src="images/logo.png" alt="SICMI Logo" height="40" class="me-2">SICMI Sarl
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html"><i class="fas fa-info-circle me-1"></i>Chi Siamo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="services.html"><i class="fas fa-cogs me-1"></i>Servizi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="projects.html"><i class="fas fa-briefcase me-1"></i>Progetti</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html"><i class="fas fa-envelope me-1"></i>Contatti</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="bg-success text-white py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4"><i class="fas fa-tools me-3"></i>Manutenzione Industriale</h1>
+                    <p class="lead">Servizi completi di manutenzione preventiva e curativa per i vostri impianti</p>
+                </div>
+                <div class="col-lg-4 text-end">
+                    <a href="#preventivo" class="btn btn-light btn-lg">
+                        <i class="fas fa-calculator me-2"></i>Calcola Preventivo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Details -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <img src="images/Screenshot_2025-11-10_235541.png" alt="Manutenzione Industriale SICMI" class="img-fluid rounded shadow mb-4">
+                    
+                    <h2 class="mb-4">Cosa Offriamo</h2>
+                    <p class="lead">Progettiamo e realizziamo strutture industriali complete, garantendo qualità, sicurezza e rispetto dei tempi di consegna.</p>
+                    
+                    <div class="row g-4 my-4">
+                        <div class="col-md-6">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-check-circle fa-2x text-success"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h5>Capannoni Industriali</h5>
+                                    <p>Progettazione e costruzione di capannoni su misura per ogni esigenza produttiva.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-check-circle fa-2x text-success"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h5>Strutture Metalliche</h5>
+                                    <p>Carpenteria metallica pesante e leggera per impianti industriali.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-check-circle fa-2x text-success"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h5>Opere Civili</h5>
+                                    <p>Fondazioni, pavimentazioni industriali e opere complementari.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-check-circle fa-2x text-success"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h5>Impianti Produttivi</h5>
+                                    <p>Realizzazione chiavi in mano di impianti di produzione completi.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="mt-5 mb-3">Il Nostro Processo</h3>
+                    <div class="accordion" id="processAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#step1">
+                                    <i class="fas fa-clipboard-list me-2 text-primary"></i> 1. Analisi e Progettazione
+                                </button>
+                            </h2>
+                            <div id="step1" class="accordion-collapse collapse show" data-bs-parent="#processAccordion">
+                                <div class="accordion-body">
+                                    Studio approfondito delle esigenze del cliente, rilievi in loco e progettazione tecnica dettagliata.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step2">
+                                    <i class="fas fa-file-contract me-2 text-primary"></i> 2. Preventivo e Contratto
+                                </button>
+                            </h2>
+                            <div id="step2" class="accordion-collapse collapse" data-bs-parent="#processAccordion">
+                                <div class="accordion-body">
+                                    Preparazione del preventivo dettagliato, negoziazione e firma del contratto con tempistiche definite.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step3">
+                                    <i class="fas fa-hard-hat me-2 text-primary"></i> 3. Esecuzione Lavori
+                                </button>
+                            </h2>
+                            <div id="step3" class="accordion-collapse collapse" data-bs-parent="#processAccordion">
+                                <div class="accordion-body">
+                                    Realizzazione del progetto con controllo qualità continuo e aggiornamenti costanti al cliente.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step4">
+                                    <i class="fas fa-check-double me-2 text-primary"></i> 4. Collaudo e Consegna
+                                </button>
+                            </h2>
+                            <div id="step4" class="accordion-collapse collapse" data-bs-parent="#processAccordion">
+                                <div class="accordion-body">
+                                    Verifica finale, collaudi tecnici e consegna dell'opera completata con documentazione completa.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-lg-4">
+                    <!-- Quick Contact -->
+                    <div class="card shadow-lg border-0 mb-4 sticky-top" style="top: 100px;">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0"><i class="fas fa-phone-alt me-2"></i>Contatto Rapido</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-center"><strong>Risposta entro 24 ore</strong></p>
+                            <div class="d-grid gap-3">
+                                <a href="tel:+237675948524" class="btn btn-success btn-lg">
+                                    <i class="fas fa-phone me-2"></i>+237 675948524
+                                </a>
+                                <a href="mailto:sicmisarl@gmail.com" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-envelope me-2"></i>Email
+                                </a>
+                            </div>
+                            <hr>
+                            <div class="text-center">
+                                <p class="small text-muted mb-2">Orari di lavoro</p>
+                                <p class="mb-0"><i class="fas fa-clock me-2"></i>Lun-Ven: 8:00-18:00</p>
+                                <p><i class="fas fa-clock me-2"></i>Sab: 8:00-13:00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Related Services -->
+                    <div class="card shadow-sm border-0">
+                        <div class="card-header bg-light">
+                            <h6 class="mb-0">Altri Servizi</h6>
+                        </div>
+                        <div class="list-group list-group-flush">
+                            <a href="service-maintenance.html" class="list-group-item list-group-item-action">
+                                <i class="fas fa-tools text-success me-2"></i>Manutenzione Industriale
+                            </a>
+                            <a href="service-welding.html" class="list-group-item list-group-item-action">
+                                <i class="fas fa-fire text-warning me-2"></i>Saldatura Speciale
+                            </a>
+                            <a href="services.html" class="list-group-item list-group-item-action">
+                                <i class="fas fa-list me-2"></i>Vedi Tutti i Servizi
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Preventivo Calculator -->
+    <section id="preventivo" class="py-5 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow-lg border-0">
+                        <div class="card-body p-5">
+                            <div class="text-center mb-4">
+                                <i class="fas fa-calculator fa-3x text-primary mb-3"></i>
+                                <h2>Interessato a questo servizio?</h2>
+                                <p class="lead">Ottieni un preventivo gratuito e personalizzato</p>
+                            </div>
+
+                            <form action="https://formspree.io/f/mdkyopad" method="POST">
+                                <input type="hidden" name="_subject" value="Richiesta Preventivo - Manutenzione">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Nome Completo *</label>
+                                        <input type="text" class="form-control form-control-lg" name="nome" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Azienda</label>
+                                        <input type="text" class="form-control form-control-lg" name="azienda">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Email *</label>
+                                        <input type="email" class="form-control form-control-lg" name="email" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Telefono *</label>
+                                        <input type="tel" class="form-control form-control-lg" name="telefono" required>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Tipo di Progetto *</label>
+                                    <select class="form-select form-select-lg" name="tipo_progetto" required>
+                                        <option value="">Seleziona...</option>
+                                        <option value="capannone">Capannone Industriale</option>
+                                        <option value="struttura">Struttura Metallica</option>
+                                        <option value="opere">Opere Civili</option>
+                                        <option value="impianto">Impianto Produttivo</option>
+                                        <option value="altro">Altro</option>
+                                    </select>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Superficie stimata (m²)</label>
+                                        <input type="number" class="form-control form-control-lg" name="superficie" placeholder="es. 1000">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Budget indicativo (€)</label>
+                                        <select class="form-select form-select-lg" name="budget">
+                                            <option value="">Seleziona...</option>
+                                            <option>Meno di 50.000€</option>
+                                            <option>50.000€ - 100.000€</option>
+                                            <option>100.000€ - 250.000€</option>
+                                            <option>250.000€ - 500.000€</option>
+                                            <option>Oltre 500.000€</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Tempistiche previste</label>
+                                    <select class="form-select form-select-lg" name="tempistiche">
+                                        <option value="">Seleziona...</option>
+                                        <option>Urgente (entro 1 mese)</option>
+                                        <option>Breve termine (1-3 mesi)</option>
+                                        <option>Medio termine (3-6 mesi)</option>
+                                        <option>Lungo termine (oltre 6 mesi)</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label">Descrizione del Progetto *</label>
+                                    <textarea class="form-control" rows="4" name="descrizione" placeholder="Descrivici in dettaglio il tuo progetto..." required></textarea>
+                                </div>
+
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle me-2"></i>
+                                    <strong>Garanzia:</strong> Riceverai una risposta entro 24 ore con un preventivo dettagliato e personalizzato.
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-lg w-100 py-3">
+                                    <i class="fas fa-paper-plane me-2"></i>Richiedi Preventivo Gratuito
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="row mt-4 text-center">
+                        <div class="col-md-4">
+                            <div class="p-3">
+                                <i class="fas fa-phone fa-2x text-primary mb-2"></i>
+                                <p class="mb-0"><strong>📞 Contatto rapido</strong></p>
+                                <p class="text-muted">+237 675948524</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3">
+                                <i class="fas fa-envelope fa-2x text-primary mb-2"></i>
+                                <p class="mb-0"><strong>Email</strong></p>
+                                <p class="text-muted">sicmisarl@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3">
+                                <i class="fas fa-clock fa-2x text-primary mb-2"></i>
+                                <p class="mb-0"><strong>Risposta entro</strong></p>
+                                <p class="text-muted">24 ore</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5><img src="images/logo.png" alt="SICMI Logo" height="30" class="me-2">SICMI Sarl</h5>
+                    <p>Società d'Ingegneria di Costruzione e Manutenzione Industriale</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Contatti</h5>
+                    <p><i class="fas fa-phone me-2"></i>+237 675948524</p>
+                    <p><i class="fas fa-envelope me-2"></i>sicmisarl@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>Bonaberi, Douala, Camerun</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Link Rapidi</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html" class="text-white text-decoration-none">Chi Siamo</a></li>
+                        <li><a href="services.html" class="text-white text-decoration-none">Servizi</a></li>
+                        <li><a href="projects.html" class="text-white text-decoration-none">Progetti</a></li>
+                        <li><a href="contact.html" class="text-white text-decoration-none">Contatti</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="bg-white">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 SICMI Sarl. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

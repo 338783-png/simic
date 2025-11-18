@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SICMI Sarl - Società d'Ingegneria di Costruzione e Manutenzione Industriale</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        
+        #heroCarousel .carousel-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        #heroCarousel .carousel-item img {
+            animation: kenBurnsEffect 10s ease-in-out infinite;
+        }
+        
+        @keyframes kenBurnsEffect {
+            0% { transform: scale(1) translateX(0); }
+            50% { transform: scale(1.1) translateX(-20px); }
+            100% { transform: scale(1) translateX(0); }
+        }
+        
+        .hero-content {
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+        }
+        
+        .animate-fade-in {
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .animate-fade-in-delay-1 {
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        .animate-fade-in-delay-2 {
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+        
+        .animate-fade-in-delay-3 {
+            animation: fadeInUp 1s ease-out 0.9s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .animate-bounce {
+            animation: bounce 2s infinite;
+        }
+        
+        .stats-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 0;
+            color: white;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .chatbot-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: transform 0.3s;
+        }
+        
+        .chatbot-button:hover {
+            transform: scale(1.1);
+        }
+        
+        .chatbot-window {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            display: none;
+            flex-direction: column;
+            z-index: 1000;
+        }
+        
+        .chatbot-window.active {
+            display: flex;
+        }
+        
+        .chatbot-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chatbot-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .chatbot-message {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .bot-message {
+            flex-direction: row;
+        }
+        
+        .user-message {
+            flex-direction: row-reverse;
+        }
+        
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .user-message .message-avatar {
+            background: #e9ecef;
+            color: #495057;
+        }
+        
+        .message-content {
+            max-width: 70%;
+        }
+        
+        .message-content p {
+            background: #f8f9fa;
+            padding: 12px 16px;
+            border-radius: 18px;
+            margin: 0;
+        }
+        
+        .user-message .message-content p {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .chatbot-input {
+            padding: 15px;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .chatbot-input input {
+            flex: 1;
+            border: 1px solid #e9ecef;
+            border-radius: 25px;
+            padding: 10px 20px;
+            outline: none;
+        }
+        
+        .chatbot-input button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <img src="images/logo.png" alt="SICMI Logo" height="40" class="me-2">SICMI Sarl
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">
+                            <i class="fas fa-home me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">
+                            <i class="fas fa-info-circle me-1"></i>Chi Siamo
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">
+                            <i class="fas fa-cogs me-1"></i>Servizi
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="projects.html">
+                            <i class="fas fa-briefcase me-1"></i>Progetti
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">
+                            <i class="fas fa-envelope me-1"></i>Contatti
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <!-- Background Carousel -->
+        <div id="heroCarousel" class="carousel slide position-absolute top-0 start-0 w-100 h-100" data-bs-ride="carousel" data-bs-interval="5000">
+            <div class="carousel-inner h-100">
+                <div class="carousel-item active h-100">
+                    <img src="images/Screenshot 2025-11-11 162408.png" class="d-block w-100 h-100" style="object-fit: cover;" alt="SICMI Project 1">
+                </div>
+                <div class="carousel-item h-100">
+                    <img src="images/Screenshot 2025-11-11 162430.png" class="d-block w-100 h-100" style="object-fit: cover;" alt="SICMI Project 2">
+                </div>
+                <div class="carousel-item h-100">
+                    <img src="images/Screenshot 2025-11-11 162436.png" class="d-block w-100 h-100" style="object-fit: cover;" alt="SICMI Project 3">
+                </div>
+                <div class="carousel-item h-100">
+                    <img src="images/Screenshot 2025-11-11 162441.png" class="d-block w-100 h-100" style="object-fit: cover;" alt="SICMI Project 4">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Dark Overlay -->
+        <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
+        
+        <!-- Content -->
+        <div class="container position-relative" style="z-index: 2; padding: 100px 0;">
+            <div class="row align-items-center" style="min-height: 70vh;">
+                <div class="col-lg-8">
+                    <div class="hero-content text-white">
+                        <h1 class="display-3 fw-bold mb-4 animate-fade-in">SICMI Sarl</h1>
+                        <h2 class="h2 mb-4 animate-fade-in-delay-1">Società d'Ingegneria di Costruzione e Manutenzione Industriale</h2>
+                        <p class="lead mb-5 animate-fade-in-delay-2">Il vostro partner di fiducia per tutti i vostri progetti di costruzione industriale e manutenzione in Camerun.</p>
+                        <div class="d-flex gap-3 flex-wrap animate-fade-in-delay-3">
+                            <a href="services.html" class="btn btn-primary btn-lg px-5 py-3 shadow-lg">
+                                <i class="fas fa-cogs me-2"></i>I Nostri Servizi
+                            </a>
+                            <a href="contact.html" class="btn btn-outline-light btn-lg px-5 py-3 shadow-lg">
+                                <i class="fas fa-envelope me-2"></i>Contattaci
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="position-absolute bottom-0 start-50 translate-middle-x mb-4" style="z-index: 2;">
+            <div class="scroll-indicator">
+                <i class="fas fa-chevron-down text-white fa-2x animate-bounce"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="150">0</div>
+                        <p>Progetti Completati</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="50">0</div>
+                        <p>Clienti Soddisfatti</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="5">0</div>
+                        <p>Anni di Esperienza</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="30">0</div>
+                        <p>Professionisti Qualificati</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Aree di Competenza -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold">Le Nostre Aree di Competenza</h2>
+                <p class="lead text-muted">Esperienza e professionalità in ogni settore industriale</p>
+            </div>
+            <div class="row g-4">
+                <!-- Costruzione Industriale -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm border-0 overflow-hidden">
+                        <div class="position-relative">
+                            <img src="images/Screenshot 2025-11-11 162408.png" class="card-img-top" alt="Costruzione Industriale" style="height: 250px; object-fit: cover;">
+                            <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.5));"></div>
+                            <div class="position-absolute bottom-0 start-0 p-3">
+                                <span class="badge bg-primary fs-6"><i class="fas fa-hard-hat me-2"></i>Costruzione</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Costruzioni Nuove e Revamping</h5>
+                            <p class="card-text text-muted">Strutture metalliche, carpenterie metalliche, strutture complesse, fabbricazione su misura (scale, mezzanini, passerelle, parapetti). Tramezzi, rivestimenti, coperture metalliche. Installazione equipaggiamenti produzione industriale.</p>
+                            <a href="service-construction.html" class="btn btn-outline-primary w-100">
+                                <i class="fas fa-arrow-right me-2"></i>Scopri di più
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manutenzione Industriale -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm border-0 overflow-hidden">
+                        <div class="position-relative">
+                            <img src="images/Screenshot 2025-11-11 162430.png" class="card-img-top" alt="Manutenzione Industriale" style="height: 250px; object-fit: cover;">
+                            <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.5));"></div>
+                            <div class="position-absolute bottom-0 start-0 p-3">
+                                <span class="badge bg-success fs-6"><i class="fas fa-tools me-2"></i>Manutenzione</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Manutenzione Industriale</h5>
+                            <p class="card-text text-muted">Lavori di meccanica industriale, troubleshooting e manutenzione equipaggiamenti produzione. Sostituzione pezzi e ripristino. Trasferimento industriale (trasloco macchine, linee produzione). Manutenzione preventiva e curativa.</p>
+                            <a href="service-maintenance.html" class="btn btn-outline-success w-100">
+                                <i class="fas fa-arrow-right me-2"></i>Scopri di più
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Saldatura Speciale -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm border-0 overflow-hidden">
+                        <div class="position-relative">
+                            <img src="images/Screenshot 2025-11-11 162436.png" class="card-img-top" alt="Saldatura Speciale" style="height: 250px; object-fit: cover;">
+                            <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.5));"></div>
+                            <div class="position-absolute bottom-0 start-0 p-3">
+                                <span class="badge bg-warning fs-6"><i class="fas fa-fire me-2"></i>Saldatura</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Saldatura Speciale</h5>
+                            <p class="card-text text-muted">Saldatura TIG, MIG, MAG, ad arco, brasatura. Saldatori omologati ai processi 141, 111, 135. Saldature speciali su equipaggiamenti produzione: acciaio inossidabile, alluminio, ghisa, rame. Tuyauterie industriale.</p>
+                            <a href="service-welding.html" class="btn btn-outline-warning w-100">
+                                <i class="fas fa-arrow-right me-2"></i>Scopri di più
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tuyauterie e Serbatoi -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm border-0 overflow-hidden">
+                        <div class="position-relative">
+                            <img src="images/Screenshot 2025-11-11 162441.png" class="card-img-top" alt="Tuyauterie" style="height: 250px; object-fit: cover;">
+                            <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.5));"></div>
+                            <div class="position-absolute bottom-0 start-0 p-3">
+                                <span class="badge bg-info fs-6"><i class="fas fa-wrench me-2"></i>Tuyauterie</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Tuyauterie e Serbatoi</h5>
+                            <p class="card-text text-muted">Tuyauterie industriale, costruzione equipaggiamenti stoccaggio prodotti petroliferi (kerobar, cisterne, serbatoi, bac). Fabbricazione carrozzerie (furgoni, cellule metalliche, brasseurs, pianali). Trattamento termico pezzi metalliche.</p>
+                            <a href="service-mechanical.html" class="btn btn-outline-info w-100">
+                                <i class="fas fa-arrow-right me-2"></i>Scopri di più
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lavori di Facciata -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm border-0 overflow-hidden">
+                        <div class="position-relative">
+                            <img src="images/Screenshot 2025-11-11 162408.png" class="card-img-top" alt="Lavori Facciata" style="height: 250px; object-fit: cover;">
+                            <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.5));"></div>
+                            <div class="position-absolute bottom-0 start-0 p-3">
+                                <span class="badge bg-danger fs-6"><i class="fas fa-building me-2"></i>Facciata</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Lavori di Facciata</h5>
+                            <p class="card-text text-muted">Posa rivestimenti murali in pannelli Equiton e Alucobon. Pittura murale. Taglio numerico per decorazioni murali. Ristrutturazione interiore ed esteriore. Taglio numerico per cancelli e insegne pubblicitarie.</p>
+                            <a href="service-electrical.html" class="btn btn-outline-danger w-100">
+                                <i class="fas fa-arrow-right me-2"></i>Scopri di più
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trattamento Superfici -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm border-0 overflow-hidden">
+                        <div class="position-relative">
+                            <img src="images/Screenshot 2025-11-11 162430.png" class="card-img-top" alt="Trattamento Superfici" style="height: 250px; object-fit: cover;">
+                            <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.5));"></div>
+                            <div class="position-absolute bottom-0 start-0 p-3">
+                                <span class="badge bg-secondary fs-6"><i class="fas fa-paint-roller me-2"></i>Trattamenti</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Trattamento Superfici</h5>
+                            <p class="card-text text-muted">Sabbiatura, verniciatura industriale e protezione anticorrosiva. Kit completo Elcometer per controllo trattamento superfici. 3 tecnici specializzati trattamento superfici metalliche. Conformità normative internazionali.</p>
+                            <a href="service-surface.html" class="btn btn-outline-secondary w-100">
+                                <i class="fas fa-arrow-right me-2"></i>Scopri di più
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Bottom -->
+            <div class="text-center mt-5">
+                <p class="lead mb-4">Hai bisogno di una consulenza personalizzata?</p>
+                <a href="contact.html" class="btn btn-primary btn-lg px-5 py-3 shadow-lg">
+                    <i class="fas fa-phone-alt me-2"></i>Contattaci Ora
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Cosa Dicono i Nostri Clienti</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body p-4">
+                            <div class="mb-3">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                            </div>
+                            <p class="card-text fst-italic">"SICMI ha realizzato un lavoro eccezionale nella costruzione del nostro nuovo impianto. Professionalità e qualità eccellenti!"</p>
+                            <div class="d-flex align-items-center mt-3">
+                                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-user fa-lg"></i>
+                                </div>
+                                <div class="ms-3">
+                                    <h6 class="mb-0">Jean-Paul Mbarga</h6>
+                                    <small class="text-muted">Direttore Tecnico, Industria XYZ</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body p-4">
+                            <div class="mb-3">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                            </div>
+                            <p class="card-text fst-italic">"Servizio di manutenzione impeccabile. Il team è sempre disponibile e competente. Consigliamo vivamente SICMI!"</p>
+                            <div class="d-flex align-items-center mt-3">
+                                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-user fa-lg"></i>
+                                </div>
+                                <div class="ms-3">
+                                    <h6 class="mb-0">Marie Nkotto</h6>
+                                    <small class="text-muted">Responsabile Operazioni, ABC Sarl</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body p-4">
+                            <div class="mb-3">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                            </div>
+                            <p class="card-text fst-italic">"Partner affidabile per tutti i nostri progetti industriali. La loro esperienza e dedizione fanno la differenza."</p>
+                            <div class="d-flex align-items-center mt-3">
+                                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-user fa-lg"></i>
+                                </div>
+                                <div class="ms-3">
+                                    <h6 class="mb-0">Pierre Ekotto</h6>
+                                    <small class="text-muted">CEO, Raffineria Douala</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Dove Siamo</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="ratio ratio-16x9">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31872.565!2d9.70893!3d4.05114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10610d8f60a3e3e1%3A0x5a5b5b5b5b5b5b5b!2sBonaberi%2C%20Douala%2C%20Cameroon!5e0!3m2!1sit!2sit!4v1699999999999!5m2!1sit!2sit"
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <div class="text-center mt-4">
+                        <p class="lead"><i class="fas fa-map-marker-alt text-primary me-2"></i>Bonaberi, Douala, Camerun</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5><img src="images/logo.png" alt="SICMI Logo" height="30" class="me-2">SICMI Sarl</h5>
+                    <p>Società d'Ingegneria di Costruzione e Manutenzione Industriale</p>
+                    <p>Il vostro partner di fiducia in Camerun.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Contatti</h5>
+                    <p><i class="fas fa-phone me-2"></i>+237 675948524 / 687013563</p>
+                    <p><i class="fas fa-envelope me-2"></i>sicmisarl@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>Bonaberi, Douala, Camerun</p>
+                    <p class="small"><strong>RCCM:</strong> RC/DLA/2020/B/2383</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Link Rapidi</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html" class="text-white text-decoration-none">Chi Siamo</a></li>
+                        <li><a href="services.html" class="text-white text-decoration-none">Servizi</a></li>
+                        <li><a href="projects.html" class="text-white text-decoration-none">Progetti</a></li>
+                        <li><a href="contact.html" class="text-white text-decoration-none">Contatti</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="bg-white">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 SICMI Sarl. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot -->
+    <button class="chatbot-button" id="chatbotToggle">
+        <i class="fas fa-comments"></i>
+    </button>
+
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            <div>
+                <h5 class="mb-0">Chat SICMI</h5>
+                <small>Sempre qui per aiutarti</small>
+            </div>
+            <button class="btn btn-link text-white p-0" id="chatbotClose">
+                <i class="fas fa-times fa-lg"></i>
+            </button>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="chatbot-message bot-message">
+                <div class="message-avatar"><i class="fas fa-robot"></i></div>
+                <div class="message-content">
+                    <p>Ciao! 👋 Come posso aiutarti oggi?</p>
+                </div>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatInput" placeholder="Scrivi un messaggio...">
+            <button id="sendMessage"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Animated Counter
+        const counters = document.querySelectorAll('.stat-number');
+        const speed = 200;
+
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const inc = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(updateCount, 1);
+                } else {
+                    counter.innerText = target + '+';
+                }
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        updateCount();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+
+            observer.observe(counter);
+        });
+
+        // Chatbot
+        const chatbotToggle = document.getElementById('chatbotToggle');
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        const chatbotClose = document.getElementById('chatbotClose');
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendMessage');
+        const messagesContainer = document.getElementById('chatbotMessages');
+
+        chatbotToggle.addEventListener('click', () => {
+            chatbotWindow.classList.toggle('active');
+        });
+
+        chatbotClose.addEventListener('click', () => {
+            chatbotWindow.classList.remove('active');
+        });
+
+        function sendMessage() {
+            const messageText = chatInput.value.trim();
+            if (!messageText) return;
+
+            const userMsg = document.createElement('div');
+            userMsg.className = 'chatbot-message user-message';
+            userMsg.innerHTML = `
+                <div class="message-avatar"><i class="fas fa-user"></i></div>
+                <div class="message-content">
+                    <p>${messageText}</p>
+                </div>
+            `;
+            messagesContainer.appendChild(userMsg);
+            chatInput.value = '';
+            
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'chatbot-message bot-message';
+                
+                let response = '';
+                const msg = messageText.toLowerCase();
+                
+                // Servizi
+                if (msg.includes('serviz') || msg.includes('service')) {
+                    response = '🔧 <strong>I nostri servizi principali:</strong><br>' +
+                               '• <a href="service-construction.html">Costruzione Industriale</a><br>' +
+                               '• <a href="service-maintenance.html">Manutenzione</a><br>' +
+                               '• <a href="service-welding.html">Saldatura Speciale</a><br>' +
+                               '• <a href="service-mechanical.html">Meccanica</a><br>' +
+                               '• <a href="service-electrical.html">Elettricità</a><br>' +
+                               '• <a href="service-surface.html">Trattamento Superfici</a><br>' +
+                               'Clicca su un servizio per saperne di più! 👆';
+                }
+                // Costruzione
+                else if (msg.includes('costruz') || msg.includes('capann') || msg.includes('edificio')) {
+                    response = '🏗️ <strong>Costruzione Industriale</strong><br>' +
+                               'Progettiamo e realizziamo capannoni industriali, strutture metalliche e impianti completi.<br>' +
+                               '<a href="service-construction.html" class="btn btn-sm btn-primary mt-2">Richiedi Preventivo</a>';
+                }
+                // Manutenzione
+                else if (msg.includes('manutenzione') || msg.includes('riparaz') || msg.includes('maintenance')) {
+                    response = '🔧 <strong>Manutenzione Industriale</strong><br>' +
+                               'Manutenzione preventiva e correttiva, interventi urgenti 24/7.<br>' +
+                               '<a href="service-maintenance.html" class="btn btn-sm btn-success mt-2">Scopri di più</a>';
+                }
+                // Saldatura
+                else if (msg.includes('saldatura') || msg.includes('sald') || msg.includes('welding')) {
+                    response = '🔥 <strong>Saldatura Speciale</strong><br>' +
+                               'Esperti certificati in saldatura TIG, MIG, ad arco. Controlli non distruttivi.<br>' +
+                               '<a href="service-welding.html" class="btn btn-sm btn-warning mt-2">Dettagli</a>';
+                }
+                // Contatti
+                else if (msg.includes('contatt') || msg.includes('telefon') || msg.includes('email')) {
+                    response = '📞 <strong>Contatti Rapidi</strong><br>' +
+                               '☎️ Telefono: <a href="tel:+237675948524">+237 675948524</a> / <a href="tel:+237687013563">687013563</a><br>' +
+                               '✉️ Email: <a href="mailto:sicmisarl@gmail.com">sicmisarl@gmail.com</a><br>' +
+                               '📍 Indirizzo: Bonaberi, Douala, Camerun<br>' +
+                               '📋 RCCM: RC/DLA/2020/B/2383<br>' +
+                               '⏰ Risposta entro 24 ore garantita!<br>' +
+                               '<a href="contact.html" class="btn btn-sm btn-primary mt-2">Form di Contatto</a>';
+                }
+                // Preventivo
+                else if (msg.includes('preventivo') || msg.includes('prezzo') || msg.includes('costo') || msg.includes('quote')) {
+                    response = '💰 <strong>Richiedi un Preventivo Gratuito</strong><br>' +
+                               'Compila il nostro form con i dettagli del tuo progetto:<br>' +
+                               '✓ Preventivo personalizzato<br>' +
+                               '✓ Risposta entro 24 ore<br>' +
+                               '✓ Consulenza gratuita<br>' +
+                               '<a href="service-construction.html#preventivo" class="btn btn-sm btn-primary mt-2">Calcola Preventivo</a>';
+                }
+                // Orari
+                else if (msg.includes('orari') || msg.includes('apertura') || msg.includes('ore')) {
+                    response = '🕐 <strong>Orari di Lavoro</strong><br>' +
+                               'Lunedì - Venerdì: 8:00 - 18:00<br>' +
+                               'Sabato: 8:00 - 13:00<br>' +
+                               'Domenica: Chiuso<br>' +
+                               '🚨 Emergenze 24/7: <a href="tel:+237675948524">+237 675948524</a>';
+                }
+                // Chi siamo
+                else if (msg.includes('chi siamo') || msg.includes('storia') || msg.includes('azienda') || msg.includes('about')) {
+                    response = '🏢 <strong>Chi Siamo</strong><br>' +
+                               'SICMI Sarl - Société d\'Ingénierie de Construction et de Maintenance Industrielle. Fondata nel 2020 da un gruppo di tecnici e ingegneri esperti.<br>' +
+                               '✓ 150+ progetti completati<br>' +
+                               '✓ 50+ clienti soddisfatti<br>' +
+                               '✓ 5 anni di crescita ed eccellenza<br>' +
+                               '✓ Certificazione ISO 9001 e ISO 45001 in corso<br>' +
+                               '<a href="about.html" class="btn btn-sm btn-info mt-2">La Nostra Storia</a>';
+                }
+                // Progetti
+                else if (msg.includes('progett') || msg.includes('portfolio') || msg.includes('lavori')) {
+                    response = '📁 <strong>I Nostri Progetti</strong><br>' +
+                               'Abbiamo completato oltre 150 progetti nei seguenti settori:<br>' +
+                               '• <strong>SONARA-LIMBE</strong>: Strutture metalliche, carpenterie, tuyauterie<br>' +
+                               '• <strong>ADDAX PETROLEUM</strong>: Saldature TIG/MIG/MAG, installazione equipaggiamenti<br>' +
+                               '• Raffinerie e impianti petroliferi<br>' +
+                               '• Industrie manifatturiere<br>' +
+                               '• Impianti di produzione<br>' +
+                               '<a href="projects.html" class="btn btn-sm btn-primary mt-2">Vedi Portfolio</a>';
+                }
+                // Certificazioni
+                else if (msg.includes('certifica') || msg.includes('qualifica') || msg.includes('standard')) {
+                    response = '🏆 <strong>Certificazioni e Qualifiche</strong><br>' +
+                               '✓ Saldatori omologati processi 141, 111, 135 (TIG, MIG, MAG)<br>' +
+                               '✓ Certificazione ISO 9001 v2015 in corso<br>' +
+                               '✓ Certificazione ISO 45001 v2018 in corso<br>' +
+                               '✓ QMOS per acciaio inossidabile, costruzione, tuyauterie<br>' +
+                               '✓ Team di 30+ professionisti qualificati<br>' +
+                               '✓ Conformità norme e regolamenti di sicurezza<br>' +
+                               '<a href="about.html" class="btn btn-sm btn-primary mt-2">Scopri di più</a>';
+                }
+                // Dove siamo
+                else if (msg.includes('dove') || msg.includes('indirizzo') || msg.includes('sede') || msg.includes('location')) {
+                    response = '📍 <strong>Dove Siamo</strong><br>' +
+                               'Sede: Bonaberi, Douala, Camerun<br>' +
+                               'Operiamo in tutto il Camerun e Africa Centrale<br>' +
+                               '<a href="index.html#map" class="btn btn-sm btn-primary mt-2">Vedi Mappa</a>';
+                }
+                // Urgenze
+                else if (msg.includes('urgente') || msg.includes('emergen') || msg.includes('subito')) {
+                    response = '🚨 <strong>Servizio Urgenze 24/7</strong><br>' +
+                               'Per emergenze, contattaci immediatamente:<br>' +
+                               '📞 <a href="tel:+237675948524"><strong>+237 675948524</strong></a><br>' +
+                               'Intervento rapido garantito!';
+                }
+                // Saluti
+                else if (msg.includes('ciao') || msg.includes('buongiorno') || msg.includes('salve') || msg.includes('hello') || msg.includes('hi')) {
+                    response = '👋 <strong>Benvenuto in SICMI Sarl!</strong><br>' +
+                               'Come posso aiutarti oggi?<br><br>' +
+                               'Puoi chiedermi informazioni su:<br>' +
+                               '• I nostri servizi<br>' +
+                               '• Preventivi<br>' +
+                               '• Contatti<br>' +
+                               '• Progetti<br>' +
+                               '• Orari di lavoro';
+                }
+                // Grazie
+                else if (msg.includes('grazie') || msg.includes('thanks') || msg.includes('merci')) {
+                    response = '😊 <strong>Prego!</strong><br>' +
+                               'Siamo sempre a tua disposizione.<br>' +
+                               'Per qualsiasi domanda, non esitare a contattarci:<br>' +
+                               '📞 <a href="tel:+237675948524">+237 675948524</a>';
+                }
+                // Default
+                else {
+                    response = '🤖 <strong>Come posso aiutarti?</strong><br><br>' +
+                               'Puoi chiedermi informazioni su:<br>' +
+                               '• <a href="services.html">Servizi</a> disponibili<br>' +
+                               '• <a href="contact.html">Contatti</a> e preventivi<br>' +
+                               '• <a href="projects.html">Progetti</a> realizzati<br>' +
+                               '• <a href="about.html">Chi siamo</a><br><br>' +
+                               'Oppure chiamaci direttamente al:<br>' +
+                               '📞 <a href="tel:+237675948524">+237 675948524</a>';
+                }
+                
+                botMsg.innerHTML = `
+                    <div class="message-avatar"><i class="fas fa-robot"></i></div>
+                    <div class="message-content">
+                        <p>${response}</p>
+                    </div>
+                `;
+                messagesContainer.appendChild(botMsg);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 1000);
+        }
+        
+        sendBtn.addEventListener('click', () => sendMessage());
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendMessage();
+        });
+    </script>
+</body>
+</html>

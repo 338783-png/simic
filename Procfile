@@ -1,0 +1,1 @@
+web: gunicorn sicmi_site.wsgi:application --log-file -
